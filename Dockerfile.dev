@@ -1,0 +1,12 @@
+FROM node:16
+
+WORKDIR /frontend
+
+COPY ./frontend/package.json ./
+COPY ./frontend/yarn.lock ./
+
+RUN yarn
+
+COPY ./frontend ./
+
+CMD [ "yarn", "dev", "--host" ]
