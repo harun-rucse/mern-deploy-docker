@@ -1,30 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import CreateTask from './pages/CreateTask';
+import Home from './pages/Home';
 
 function App() {
-  const [data, setData] = useState([]);
-
-  const getData = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/todos`);
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
-    <div>
-      <h1>Client</h1>
-      <ul>
-        {data.map((item) => (
-          <li key={item._id}>{item.name}</li>
-        ))}
-      </ul>
+    <div className="w-full h-screen bg-gray-800 text-gray-100">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<CreateTask />} />
+      </Routes>
     </div>
   );
 }
